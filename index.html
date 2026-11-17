@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d18">
+  <meta name="description" content="LightPlay - 軽く、深く遊べるオリジナルゲーム。">
+  <title>LightPlay — DUNGEON ZERO</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="LightPlay home"><span class="brand-mark">L</span> LIGHT<span>PLAY</span></a>
+    <div class="top-meta"><span class="live-dot"></span> ORIGINAL GAME PROJECT <span class="version">PROTOTYPE 0.1</span></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">LIGHTPLAY ORIGINALS <span>／</span> GAME 001</div>
+      <h1>DUNGEON <em>ZERO</em></h1>
+      <p class="subtitle">文明が滅び、神話が目覚めた。<br>幾度でも挑め。ダンジョンは、二度と同じ姿を見せない。</p>
+      <div class="tags"><span>2D ACTION</span><span>ROGUELIKE</span><span>FANTASY × SCI-FI × JAPAN</span></div>
+    </section>
+
+    <section class="game-layout" aria-label="ゲーム">
+      <div class="game-panel">
+        <div class="panel-heading"><div><span class="status-dot"></span> DUNGEON TERMINAL</div><span id="room-label">ROOM 01 / 05</span></div>
+        <div class="canvas-wrap">
+          <canvas id="game" width="960" height="600" aria-label="DUNGEON ZERO game area"></canvas>
+          <div id="overlay" class="overlay">
+            <div class="overlay-card">
+              <div class="overlay-kicker">CHOOSE YOUR PATH</div>
+              <h2>職業を選択</h2>
+              <p>ダンジョンに入る前に、戦い方を決めよう。</p>
+              <div class="class-grid">
+                <button class="class-choice selected" data-class="swordsman"><b>⚔</b><strong>剣士</strong><small>近接・バランス型</small></button>
+                <button class="class-choice" data-class="mage"><b>✧</b><strong>魔法使い</strong><small>遠距離・範囲型</small></button>
+                <button class="class-choice" data-class="gunner"><b>⌁</b><strong>ガンナー</strong><small>連射・機動型</small></button>
+                <button class="class-choice" data-class="ninja"><b>忍</b><strong>忍者</strong><small>高速・回避型</small></button>
+              </div>
+              <button id="start-button" class="primary-button">ダンジョンに入る <span>→</span></button>
+            </div>
+          </div>
+          <div id="level-overlay" class="overlay hidden">
+            <div class="overlay-card level-card">
+              <div class="overlay-kicker">LEVEL UP</div><h2>能力を選択</h2><p>今回の探索で得る力を選ぼう。</p>
+              <div id="upgrade-options" class="upgrade-options"></div>
+            </div>
+          </div>
+          <div id="result-overlay" class="overlay hidden">
+            <div class="overlay-card"><div class="overlay-kicker">RUN COMPLETE</div><h2 id="result-title">探索終了</h2><p id="result-text"></p><button id="retry-button" class="primary-button">もう一度挑戦 <span>↻</span></button></div>
+          </div>
+        </div>
+        <div class="game-footer"><span>WASD / 矢印：移動</span><span>J：攻撃</span><span>SPACE：回避</span><span>ESC：一時停止</span></div>
+      </div>
+
+      <aside class="side-panel">
+        <div class="side-card">
+          <div class="side-title">STATUS <span>PLAYER</span></div>
+          <div class="player-name" id="class-name">剣士 <small>LV. 1</small></div>
+          <div class="stat-line"><span>HP</span><strong id="hp-text">100 / 100</strong></div>
+          <div class="bar"><i id="hp-bar" class="hp-fill"></i></div>
+          <div class="stat-line"><span>EXP</span><strong id="xp-text">0 / 30</strong></div>
+          <div class="bar"><i id="xp-bar" class="xp-fill"></i></div>
+          <div class="stat-grid"><div><small>ATK</small><b id="atk-text">18</b></div><div><small>SPD</small><b id="spd-text">3.2</b></div><div><small>GOLD</small><b id="gold-text">0</b></div></div>
+        </div>
+        <div class="side-card">
+          <div class="side-title">MISSION <span>探索目標</span></div>
+          <div class="mission-title">深層ゲートを目指せ</div>
+          <p class="mission-copy">各部屋の敵をすべて倒すと、次のゲートが開く。</p>
+          <div class="mission-progress"><i id="room-progress"></i></div>
+          <div class="mission-count" id="enemy-count">敵を倒そう</div>
+        </div>
+        <div class="side-card controls-card">
+          <div class="side-title">FIELD GUIDE <span>操作方法</span></div>
+          <div class="control-row"><kbd>W A S D</kbd><span>移動</span></div>
+          <div class="control-row"><kbd>J</kbd><span>通常攻撃</span></div>
+          <div class="control-row"><kbd>SPACE</kbd><span>回避（クールダウン）</span></div>
+          <div class="control-row"><kbd>ESC</kbd><span>一時停止</span></div>
+        </div>
+      </aside>
+    </section>
+    <section class="below">
+      <div><span class="section-label">THE WORLD</span><h2>失われた文明の、その先へ。</h2><p>古代遺跡、機械都市、そして忘れられた神域。探索するたびに変化する部屋を突破し、最深部に待つ存在の正体を突き止めろ。</p></div>
+      <div class="feature-list"><div><b>01</b><span>毎回変化する戦場</span></div><div><b>02</b><span>4つの職業と成長要素</span></div><div><b>03</b><span>装備・スキルは開発予定</span></div></div>
+    </section>
+  </main>
+  <footer><span>LIGHTPLAY</span><span>BUILT FOR THE NEXT ADVENTURE.</span><span>© 2026 TAKANdev</span></footer>
+  <script src="game.js"></script>
+</body>
+</html>
